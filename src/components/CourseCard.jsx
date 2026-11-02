@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CourseCard = ({ course, status, coursesCatalog, onStatusToggle }) => {
+const CourseCard = ({course, status, coursesCatalog, onStatusToggle}) => {
 
     // Map prerequisite IDs to actual course code strings (e.g. 1 -> "CSC1700")
     const prereqCodes = course.prerequisites.map(prereqId => {
@@ -25,14 +25,14 @@ const CourseCard = ({ course, status, coursesCatalog, onStatusToggle }) => {
             <div className="card-body d-flex flex-column justify-content-between">
 
                 <div>
-                    {/* Header Row */}
+                    {/* Class Label Title/Header */}
                     <div className="d-flex justify-content-between align-items-center mb-2">
                         <h5 className="card-title mb-0 fw-bold">{course.number}</h5>
                         <span className={`badge fw-bold ${badgeColor}`}>{status}</span>
                     </div>
 
-                    {/* Description Block */}
-                    <h6 className="card-subtitle mb-2 text-muted">{course.title} ({course.credits} credits)</h6>
+                    {/* Class Description Block */}
+                    <h6 className="card-subtitle mb-2 text-muted">{course.title} ({course.credits} Credits)</h6>
                     <p className="card-text text-secondary small">{course.description}</p>
                 </div>
 
@@ -51,7 +51,8 @@ const CourseCard = ({ course, status, coursesCatalog, onStatusToggle }) => {
                             disabled={status === 'Locked'} // Enforce: clicking locked does nothing
                             onChange={(e) => onStatusToggle(e.target.checked)}
                         />
-                        <label className="form-check-label text-muted small user-select-none" htmlFor={`check-${course.id}`}>
+                        <label className="form-check-label text-muted small user-select-none"
+                               htmlFor={`check-${course.id}`}>
                             {status === 'Locked' ? 'Complete prerequisites first' : 'Mark Completed'}
                         </label>
                     </div>

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import useFetch from '../hooks/useFetch';
 import CourseList from '../components/CourseList';
 import ProgressSummary from '../components/ProgressSummary';
 
+// Call useFetch using environment variable
 const HomePage = () => {
-    // 1. Call useFetch using your environment variable
     const apiEndpoint = `${import.meta.env.VITE_API_BASE_URL}/courses`;
-    const { data: rawCourses, isPending, error } = useFetch(apiEndpoint);
+    const {data: rawCourses, isPending, error} = useFetch(apiEndpoint);
 
 // Make all ids numbers so comparisons like completed.includes(prereqId) work
     const courses = rawCourses
@@ -40,7 +40,7 @@ const HomePage = () => {
 
     return (
         <div className="container mt-4">
-            {/* 2. Show an error message if the fetch fails */}
+            {/* Show an error message if the fetch fails */}
             {error && (
                 <div className="alert alert-danger my-3" role="alert">
                     <strong>Error loading catalog:</strong> {error}. Please make sure JSON Server is
@@ -48,7 +48,7 @@ const HomePage = () => {
                 </div>
             )}
 
-            {/* 3. Show a loading indicator while isPending is true */}
+            {/* Show a loading indicator while isPending is true */}
             {isPending && (
                 <div className="d-flex justify-content-center align-items-center my-5 gap-3">
                     <div className="spinner-border text-primary" role="status"></div>
@@ -59,18 +59,24 @@ const HomePage = () => {
             {/* Only render content once the courses array has successfully loaded */}
             {courses && (
                 <>
-                    <ProgressSummary courses={courses} completed={completed} />
+                    <ProgressSummary courses={courses} completed={completed}/>
 
                     <div className="d-flex justify-content-between my-3">
                         <div className="btn-group">
-                            <button className={`btn btn-outline-dark ${filter === 'All' ? 'active' : ''}`} onClick={() => setFilter('All')}>All Courses</button>
-                            <button className={`btn btn-outline-dark ${filter === 'Completed Only' ? 'active' : ''}`} onClick={() => setFilter('Completed Only')}>Completed Only</button>
-                            <button className={`btn btn-outline-dark ${filter === 'Remaining' ? 'active' : ''}`} onClick={() => setFilter('Remaining')}>Remaining</button>
+                            <button className={`btn btn-outline-dark ${filter === 'All' ? 'active' : ''}`}
+                                    onClick={() => setFilter('All')}>All Courses
+                            </button>
+                            <button className={`btn btn-outline-dark ${filter === 'Completed Only' ? 'active' : ''}`}
+                                    onClick={() => setFilter('Completed Only')}>Completed Only
+                            </button>
+                            <button className={`btn btn-outline-dark ${filter === 'Remaining' ? 'active' : ''}`}
+                                    onClick={() => setFilter('Remaining')}>Remaining
+                            </button>
                         </div>
                         <button className="btn btn-success px-4" onClick={handleSave}>Save</button>
                     </div>
 
-                    {/* 1. Pass the courses down as a prop */}
+                    {/* Pass the courses down as a prop */}
                     <CourseList
                         courses={courses}
                         completed={completed}

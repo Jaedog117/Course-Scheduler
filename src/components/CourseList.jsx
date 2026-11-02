@@ -1,14 +1,14 @@
 import React from 'react';
 import CourseCard from './CourseCard';
 
-const CourseList = ({ courses, completed, setCompleted, filter }) => {
+const CourseList = ({courses, completed, setCompleted, filter}) => {
 
-    // 1. Helper function to check if all prerequisites of a course are met
+    // Helper function to check if all prerequisites of a course are met
     const isAvailable = (course) => {
         return course.prerequisites.every(prereqId => completed.includes(prereqId));
     };
 
-    // 2. Cascade Uncheck Logic: Recursively unchecks any courses that depend on the unchecked course
+    // Cascade Uncheck Logic: Recursively unchecks any courses that depend on the unchecked course
     const handleToggleCompleted = (courseId, isChecked) => {
         if (isChecked) {
             // Check if eligible to complete (double-enforce)
