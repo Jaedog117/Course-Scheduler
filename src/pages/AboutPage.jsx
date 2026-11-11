@@ -26,7 +26,7 @@ const AboutPage = () => {
                 <div className="col-8 text-secondary">{formattedDate}</div>
 
                 <div className="col-4 text-dark fw-bold">Version:</div>
-                <div className="col-8 text-secondary">1.0.0</div>
+                <div className="col-8 text-secondary">2.0.0</div>
             </div>
         </div>
     );
