@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .env
 .idea
+# Environment files (keep credentials out of git)
+.env
+server/.env
